@@ -7,7 +7,14 @@ const routes = [
         name: "contactbook",
         component: ContactBook,
     },
-    // Thêm định nghĩa route khớp với tất cả các URL lỗi 404 ở đây
+    // Thêm định nghĩa route đến ContactEdit vào đây 
+    {
+        path: "/contacts/:id",
+        name: "contact.edit",
+        component: () => import("@/views/ContactEdit.vue"),
+        props: true // Truyền các biến trong $route.params vào làm props 
+    },
+    // Thêm định nghĩa route khớp với tất cả các URL lỗi 404 ở đây 
     {
         path: "/:pathMatch(.*)*",
         name: "notfound",

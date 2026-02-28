@@ -19,11 +19,9 @@
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
-
                 <button class="btn btn-sm btn-success" @click="goToAddContact">
                     <i class="fas fa-plus"></i> Thêm mới
                 </button>
-
                 <button class="btn btn-sm btn-danger" @click="removeAllContacts">
                     <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
@@ -71,21 +69,17 @@ export default {
         };
     },
     watch: {
-        // Giám sát các thay đổi của biến searchText.
-        // Bỏ chọn phần tử đang được chọn trong danh sách.
         searchText() {
             this.activeIndex = -1;
         },
     },
     computed: {
-        // Chuyển các đối tượng contact thành chuỗi để tiện cho tìm kiếm.
         contactStrings() {
             return this.contacts.map((contact) => {
                 const { name, email, address, phone } = contact;
                 return [name, email, address, phone].join("");
             });
         },
-        // Trả về các contact có chứa thông tin cần tìm kiếm.
         filteredContacts() {
             if (!this.searchText) return this.contacts;
             return this.contacts.filter((_contact, index) =>
@@ -108,12 +102,10 @@ export default {
                 console.log(error);
             }
         },
-
         refreshList() {
             this.retrieveContacts();
             this.activeIndex = -1;
         },
-
         async removeAllContacts() {
             if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
                 try {
@@ -124,7 +116,6 @@ export default {
                 }
             }
         },
-
         goToAddContact() {
             this.$router.push({ name: "contact.add" });
         },
