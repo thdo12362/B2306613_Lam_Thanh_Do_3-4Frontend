@@ -7,6 +7,12 @@ const routes = [
         name: "contactbook",
         component: ContactBook,
     },
+    // Thêm định nghĩa route khớp với tất cả các URL lỗi 404 ở đây
+    {
+        path: "/:pathMatch(.*)*",
+        name: "notfound",
+        component: () => import("@/views/NotFound.vue"),
+    },
 ];
 
 const router = createRouter({
