@@ -7,14 +7,20 @@ const routes = [
         name: "contactbook",
         component: ContactBook,
     },
-    // Thêm định nghĩa route đến ContactEdit vào đây 
+    // 1. Đăng ký route cho trang Thêm mới liên hệ 
+    {
+        path: "/contacts/add",
+        name: "contact.add",
+        component: () => import("@/views/ContactAdd.vue"),
+    },
+    // 2. Đăng ký route cho trang Hiệu chỉnh liên hệ 
     {
         path: "/contacts/:id",
         name: "contact.edit",
         component: () => import("@/views/ContactEdit.vue"),
         props: true // Truyền các biến trong $route.params vào làm props 
     },
-    // Thêm định nghĩa route khớp với tất cả các URL lỗi 404 ở đây 
+    // 3. Khai báo route catch-all cho trang lỗi 404 
     {
         path: "/:pathMatch(.*)*",
         name: "notfound",
@@ -27,4 +33,4 @@ const router = createRouter({
     routes,
 });
 
-export default router;
+export default router; 
